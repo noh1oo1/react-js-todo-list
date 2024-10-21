@@ -1,13 +1,19 @@
-import React, { useState } from "react"
+import React from "react"
 
-export default function TodoForm({ addTodo }) {
-  const [inputValue, setInputValue] = useState("")
-
+export default function TodoForm({
+  addTodo,
+  saveEditTodo,
+  newEdit,
+  setNewEdit,
+  editingTodoId,
+}) {
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (inputValue.trim()) {
-      addTodo(inputValue)
-      setInputValue("")
+    if (editingTodoId) {
+      saveEditTodo()
+    } else if (newEdit.trim()) {
+      addTodo(newEdit)
+      setNewEdit("")
     }
   }
 
@@ -15,11 +21,11 @@ export default function TodoForm({ addTodo }) {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        value={newEdit}
+        onChange={(e) => setNewEdit(e.target.value)}
         placeholder="새로운 할일 추가"
       />
-      <button type="submit">추가</button>
+      <button type="submit">{editingTodoId ? "수정" : "추가"}</button>
     </form>
   )
 }

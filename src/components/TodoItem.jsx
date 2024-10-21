@@ -1,15 +1,21 @@
 import React from "react"
 
-export default function TodoItem({ todo, editTodo, deleteTodo, toggleTodo }) {
+export default function TodoItem({
+  todo,
+  toggleTodo,
+  startEditTodo,
+  deleteTodo,
+}) {
   return (
-    <li>
+    <li style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
       <input
         className="checkbox"
         type="checkbox"
-        onClick={() => toggleTodo(todo.id)}
+        checked={todo.completed}
+        onChange={() => toggleTodo(todo.id)}
       />
       {todo.text}
-      <button onClick={() => editTodo(todo.id)}>수정</button>
+      <button onClick={() => startEditTodo(todo.id)}>수정</button>
       <button onClick={() => deleteTodo(todo.id)}>삭제</button>
     </li>
   )

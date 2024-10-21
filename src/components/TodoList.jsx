@@ -1,15 +1,21 @@
 import React from "react"
 import TodoItem from "./TodoItem"
 
-export default function TodoList({ todos, toggleTodo, deleteTodo }) {
+export default function TodoList({
+  todos,
+  toggleTodo,
+  deleteTodo,
+  startEditTodo,
+}) {
   return (
-    <ul style={{ listStyleType: "none" }}>
+    <ul style={{ paddingLeft: "0px", listStyleType: "none" }}>
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
           todo={todo}
-          deleteTodo={deleteTodo}
           toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+          startEditTodo={startEditTodo}
         />
       ))}
     </ul>
